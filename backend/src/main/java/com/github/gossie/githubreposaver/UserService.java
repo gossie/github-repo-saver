@@ -19,4 +19,13 @@ public class UserService {
                 .map(userRepository::save);
     }
 
+    public void addFavorite(String username, Favorite favorite) {
+        findByUsername(username)
+                .ifPresentOrElse(user -> {
+                    user.addFavorite(favorite);
+                    userRepository.save(user);
+                }, () -> {
+                    throw new RuntimeException();
+                });
+    }
 }

@@ -1,5 +1,6 @@
 package com.github.gossie.githubreposaver;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,11 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GitHubRepository {
 
-    private Long id;
     private String name;
 
-    public GitHubRepository(String name) {
-        this.name = name;
-    }
+    @JsonProperty("full_name")
+    private String fullName;
 
 }

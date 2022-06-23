@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { getRepositoriesByUser } from "../api-services";
+import GitHubRepositoryComponent from "../components/GitHubRepositoryComponent";
 import { GitHubRepository } from "../model";
 
 export default function SearchPage() {
@@ -12,7 +13,7 @@ export default function SearchPage() {
             .then(repositories => setGitHubRepositories(repositories))
     }
 
-    const repos = gitHubRepositories.map(repo => <div key={repo.name}>{repo.name}</div>)
+    const repos = gitHubRepositories.map(repo => <GitHubRepositoryComponent key={repo.name} username={'gossie'} gitHubRepository={repo} />)
 
     return (
         <div>

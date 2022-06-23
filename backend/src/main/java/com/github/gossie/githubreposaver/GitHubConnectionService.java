@@ -25,4 +25,13 @@ public class GitHubConnectionService {
         }
     }
 
+    public boolean repoExists(String fullName) {
+        try {
+            restTemplate.getForObject(GITHUB_BASE_URL + "repos/" + fullName, Void.class);
+            return true;
+        } catch(Exception e) {
+            return false;
+        }
+    }
+
 }

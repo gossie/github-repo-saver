@@ -40,6 +40,7 @@ export default function UserPage() {
                                 </div>
                                 <div>
                                     <h3>Favorites</h3>
+                                    { user.favoriteRepositories?.map(f => <div>{f.repositoryName}</div>) }
                                 </div>
                             </div>
                         }

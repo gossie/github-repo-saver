@@ -11,3 +11,7 @@ export function getUser(username: string) {
     return axios.get(`/api/users/${username}`)
         .then((response: AxiosResponse<User>) => response.data)
 }
+
+export function addRepoAsFavorite(username: string, repoName: string) {
+    return axios.post(`/api/users/${username}/favorites`, { repositoryName: repoName })
+}

@@ -1,8 +1,13 @@
 export interface GitHubRepository {
     name: string
+    full_name: string;
 }
 
 export interface User {
     username: string;
-    favorites: Array<number>;
+    favoriteRepositories: Array<Favorite>;
+}
+
+export interface Favorite {
+    repositoryName: string;
 }
