@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getRepositoriesByUser, getUser } from "../api-services";
 import GitHubRepositoryComponent from "../components/GitHubRepositoryComponent";
@@ -26,7 +26,9 @@ export default function SearchPage() {
         }
     }, [errorMessage, nav])
 
-    const searchRepositories = () => {
+    const searchRepositories = (ev: FormEvent) => {
+        ev.preventDefault()
+
         getRepositoriesByUser(githubUsername)
             .then(repositories => setGitHubRepositories(repositories))
     }
@@ -40,12 +42,14 @@ export default function SearchPage() {
                     <div>
                         {user &&
                             <div>
-                                <div>
-                                    <input type="text" value={githubUsername} onChange={ev => setGithubUsername(ev.target.value)} placeholder="GitHub Username" />
-                                </div>
-                                <div>
-                                    <button onClick={searchRepositories}>Search</button>
-                                </div>
+                                <form onSubmit={searchRepositories}>
+                                    <div>
+                                        <input type="text" value={githubUsername} onChange={ev => setGithubUsername(ev.target.value)} placeholder="GitHub Username" />
+                                    </div>
+                                    <div>
+                                        <input type="submit" value="Search" />
+                                    </div>
+                                </form>
                                 <div>
                                     {gitHubRepositories.map(repo => <GitHubRepositoryComponent key={repo.name} user={user!} gitHubRepository={repo} />)}
                                 </div>
