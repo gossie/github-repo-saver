@@ -13,13 +13,13 @@ class GitHubConnectionServiceTest {
     void shouldRetrieveRepositories() {
         var restTemplate = mock(RestTemplate.class);
         when(restTemplate.getForObject("https://api.github.com/users/anyUser/repos", GitHubRepository[].class))
-                .thenReturn(new GitHubRepository[]{new GitHubRepository("Repo 1"), new GitHubRepository("Repo 2")});
+                .thenReturn(new GitHubRepository[]{new GitHubRepository("Repo1", "user/Repo1"), new GitHubRepository("Repo2", "user/Repo2")});
 
         var gitHubConnectionService = new GitHubConnectionService(restTemplate);
 
         GitHubRepository[] actual = gitHubConnectionService.findByUsername("anyUser");
 
-        assertThat(actual).containsExactly(new GitHubRepository("Repo 1"), new GitHubRepository("Repo 2"));
+        assertThat(actual).containsExactly(new GitHubRepository("Repo 1", "user/Repo1"), new GitHubRepository("Repo 2", "user/Repo2"));
     }
 
     @Test
