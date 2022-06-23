@@ -14,6 +14,7 @@ export function getUser(username: string) {
 
 export function addRepoAsFavorite(username: string, repoName: string) {
     return axios.post(`/api/users/${username}/favorites`, { repositoryName: repoName })
+        .then((response: AxiosResponse<User>) => response.data)
 }
 
 export function removeFavorite(username: string, repoName: string) {

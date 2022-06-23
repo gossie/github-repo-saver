@@ -5,15 +5,14 @@ import { GitHubRepository, User } from "../model";
 interface GitHubRepositoryComponentProps {
     user: User;
     gitHubRepository: GitHubRepository;
+    onFavoriteAdd: (user: User) => void;
 }
 
 export default function GitHubRepositoryComponent(props: GitHubRepositoryComponentProps) {
 
-    const nav = useNavigate()
-
     const add = () => {
         addRepoAsFavorite(props.user.username, props.gitHubRepository.full_name)
-            .then(() => nav(`/user/${props.user.username}`))
+            .then((changedUser) => props.onFavoriteAdd(changedUser))
     }
 
     return (

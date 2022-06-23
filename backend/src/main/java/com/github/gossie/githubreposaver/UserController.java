@@ -1,6 +1,7 @@
 package com.github.gossie.githubreposaver;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +20,8 @@ public class UserController {
 
     @PostMapping("/favorites")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addFavorite(@PathVariable String username, @RequestBody Favorite favorite) {
-        userService.addFavorite(username, favorite);
+    public ResponseEntity<User> addFavorite(@PathVariable String username, @RequestBody Favorite favorite) {
+        return ResponseEntity.of(userService.addFavorite(username, favorite));
     }
 
     @DeleteMapping("/favorites")

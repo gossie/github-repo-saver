@@ -50,7 +50,7 @@ export default function UserPage() {
                                 </div>
                                 <div>
                                     <h3>Own repositories</h3>
-                                    { ownRepositories.map(repo => <GitHubRepositoryComponent key={repo.name} user={user!} gitHubRepository={repo} />) }
+                                    { ownRepositories.map(repo => <GitHubRepositoryComponent key={repo.name} user={user!} gitHubRepository={repo} onFavoriteAdd={setUser} />) }
                                 </div>
                             </div>
                         }
