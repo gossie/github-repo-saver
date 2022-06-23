@@ -1,24 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import SearchPage from './SearchPage';
 
 function App() {
 
-    const [greeting, setGreeting] = useState('')
-
-    useEffect(() => {
-        fetch('/api/greeting', {
-            method: 'GET',
-            headers: {
-                'Accept': 'text/plain'
-            }
-        })
-            .then(response => response.text())
-            .then(text => setGreeting(text))
-            .catch(err => setGreeting('Da ist etwas schief gelaufen'));
-    }, []);
-
     return (
         <div>
-            {greeting}
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<SearchPage />} />
+                </Routes>
+            </BrowserRouter>
         </div>
     );
 }
