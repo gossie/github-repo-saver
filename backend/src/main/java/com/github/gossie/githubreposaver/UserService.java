@@ -10,10 +10,13 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final GitHubConnectionService gitHubConnectionService;
 
-    public User findByUsername(String username) {
+    public Optional<User> findByUsername(String username) {
         return userRepository.findByUsername(username)
-                .orElseGet(() -> userRepository.save(new User(username)));
+                .or(() -> Optional.of(new User(username)))
+                .filter(user -> gitHubConnectionService.userExists(user.getUsername()))
+                .map(userRepository::save);
     }
 
 }

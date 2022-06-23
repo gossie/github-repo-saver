@@ -1,34 +1,51 @@
 import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { getUser } from "../api-services"
 import { User } from "../model"
 
 export default function UserPage() {
 
     const [user, setUser] = useState<User>()
+    const [errorMessage, setErrorMessage] = useState('');
 
     const { username } = useParams()
-
+    const nav = useNavigate()
+ 
     useEffect(() => {
         getUser(username!)
             .then((user => setUser(user)))
+            .catch(() => setErrorMessage(`The user ${username} cannot be found. You will be redirected to the login page.`))
     }, [username])
+
+    useEffect(() => {
+        if (errorMessage) {
+            setTimeout(() => nav('/'), 5000)
+        }
+    }, [errorMessage])
 
     return (
         <div>
-            {user &&
-                <div>
+            { errorMessage
+                ? 
+                    <div>{errorMessage}</div>
+                :
                     <div>
-                        User: {username}
+                        {user &&
+                            <div>
+                                <div>
+                                    User: {username}
+                                </div>
+                                <div>
+                                    <Link to="/search">Search for repositories</Link>
+                                </div>
+                                <div>
+                                    <h3>Favorites</h3>
+                                </div>
+                            </div>
+                        }
                     </div>
-                    <div>
-                        <Link to="/search">Search for repositories</Link>
-                    </div>
-                    <div>
-                        <h3>Favorites</h3>
-                    </div>
-                </div>
             }
+            
         </div>
     )
 }

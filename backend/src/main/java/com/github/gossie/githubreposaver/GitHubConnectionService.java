@@ -16,4 +16,13 @@ public class GitHubConnectionService {
         return restTemplate.getForObject(GITHUB_BASE_URL + "users/" + username + "/repos", GitHubRepository[].class);
     }
 
+    public boolean userExists(String username) {
+        try {
+            restTemplate.getForObject(GITHUB_BASE_URL + "users/" + username, Void.class);
+            return true;
+        } catch(Exception e) {
+            return false;
+        }
+    }
+
 }
