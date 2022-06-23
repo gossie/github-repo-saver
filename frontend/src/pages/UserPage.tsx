@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
-import { getUser } from "../api-services"
+import { getRepositoriesByUser, getUser } from "../api-services"
 import FavoriteComponent from "../components/FavoriteComponent"
-import { User } from "../model"
+import GitHubRepositoryComponent from "../components/GitHubRepositoryComponent"
+import { GitHubRepository, User } from "../model"
 
 export default function UserPage() {
 
     const [user, setUser] = useState<User>()
     const [errorMessage, setErrorMessage] = useState('');
+    const [ownRepositories, setOwnRepositories] = useState<Array<GitHubRepository>>([]);
 
     const { username } = useParams()
     const nav = useNavigate()
@@ -16,6 +18,9 @@ export default function UserPage() {
         getUser(username!)
             .then((user => setUser(user)))
             .catch(() => setErrorMessage(`The user ${username} cannot be found. You will be redirected to the login page.`))
+
+        getRepositoriesByUser(username!)
+            .then(repositories => setOwnRepositories(repositories))
     }, [username])
 
     useEffect(() => {
@@ -42,6 +47,10 @@ export default function UserPage() {
                                 <div>
                                     <h3>Favorites</h3>
                                     { user.favoriteRepositories?.map(f => <FavoriteComponent key={f.repositoryName} user={user} favorite={f} onFavoriteDeletion={setUser} />) }
+                                </div>
+                                <div>
+                                    <h3>Own repositories</h3>
+                                    { ownRepositories.map(repo => <GitHubRepositoryComponent key={repo.name} user={user!} gitHubRepository={repo} />) }
                                 </div>
                             </div>
                         }
