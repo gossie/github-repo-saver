@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { addRepoAsFavorite } from "../api-services";
 import { GitHubRepository, User } from "../model";
 
