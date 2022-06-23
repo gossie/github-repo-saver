@@ -7,7 +7,7 @@
         <artifactId>github-repo-saver-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>spring-boot-react-bundle-backend</artifactId>
+    <artifactId>github-repo-saver-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>github-repo-saver-backend</name>
     <description>A tool to bookmark my favorite github repositories</description>
