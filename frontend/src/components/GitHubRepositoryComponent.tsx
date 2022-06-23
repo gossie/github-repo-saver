@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { addRepoAsFavorite } from "../api-services";
-import { GitHubRepository } from "../model";
+import { GitHubRepository, User } from "../model";
 
 interface GitHubRepositoryComponentProps {
-    username: string;
+    user: User;
     gitHubRepository: GitHubRepository;
 }
 
@@ -12,11 +12,14 @@ export default function GitHubRepositoryComponent(props: GitHubRepositoryCompone
     const nav = useNavigate()
 
     const add = () => {
-        addRepoAsFavorite(props.username, props.gitHubRepository.full_name)
-            .then(() => nav(`/user/${props.username}`))
+        addRepoAsFavorite(props.user.username, props.gitHubRepository.full_name)
+            .then(() => nav(`/user/${props.user.username}`))
     }
 
     return (
-        <div>{props.gitHubRepository.name} <button onClick={add}>Add as favorite</button></div>
+        <div>
+            {props.gitHubRepository.name}
+            { !props.user.favoriteRepositories.map(f => f.repositoryName).includes(props.gitHubRepository.full_name) && <button onClick={add}>Add as favorite</button>}
+        </div>
     )
 }

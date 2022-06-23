@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Document(collection = "users")
 @Data
@@ -26,5 +27,9 @@ public class User {
 
     public void addFavorite(Favorite favorite) {
         favoriteRepositories.add(favorite);
+    }
+
+    public void removedFavorite(String repoName) {
+        favoriteRepositories.removeIf(f -> Objects.equals(f.getRepositoryName(), repoName));
     }
 }

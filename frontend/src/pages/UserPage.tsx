@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { getUser } from "../api-services"
+import FavoriteComponent from "../components/FavoriteComponent"
 import { User } from "../model"
 
 export default function UserPage() {
@@ -36,11 +37,11 @@ export default function UserPage() {
                                     User: {username}
                                 </div>
                                 <div>
-                                    <Link to="/search">Search for repositories</Link>
+                                    <Link to={`/search/${username}`}>Search for repositories</Link>
                                 </div>
                                 <div>
                                     <h3>Favorites</h3>
-                                    { user.favoriteRepositories?.map(f => <div>{f.repositoryName}</div>) }
+                                    { user.favoriteRepositories?.map(f => <FavoriteComponent key={f.repositoryName} user={user} favorite={f} onFavoriteDeletion={setUser} />) }
                                 </div>
                             </div>
                         }

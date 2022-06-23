@@ -28,4 +28,12 @@ public class UserService {
                     throw new RuntimeException();
                 });
     }
+
+    public Optional<User> removeFavorite(String username, String repoName) {
+        return findByUsername(username)
+                .map(user -> {
+                    user.removedFavorite(repoName);
+                    return userRepository.save(user);
+                });
+    }
 }
