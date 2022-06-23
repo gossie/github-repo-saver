@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import SearchPage from './SearchPage';
+import LoginPage from './pages/LoginPage';
+import SearchPage from './pages/SearchPage';
+import UserPage from './pages/UserPage';
 
 function App() {
 
@@ -7,7 +9,9 @@ function App() {
         <div>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<SearchPage />} />
+                    <Route path="/" element={<LoginPage />} />
+                    <Route path="/user/:username" element={<UserPage />} />
+                    <Route path="/search" element={<SearchPage />} />
                 </Routes>
             </BrowserRouter>
         </div>

@@ -9,6 +9,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GitHubRepository {
 
+    private Long id;
     private String name;
+
+    public GitHubRepository(String name) {
+        this.name = name;
+    }
 
 }

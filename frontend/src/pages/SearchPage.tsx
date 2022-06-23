@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { getRepositoriesByUser } from "./api-services";
-import { GitHubRepository } from "./model";
+import { getRepositoriesByUser } from "../api-services";
+import { GitHubRepository } from "../model";
 
 export default function SearchPage() {
 
