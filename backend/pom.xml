@@ -4,13 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.github.gossie</groupId>
-        <artifactId>spring-boot-react-bundle-parent</artifactId>
+        <artifactId>github-repo-saver-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>spring-boot-react-bundle-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-boot-react-bundle-backend</name>
-    <description>Demo to deploy frontend and backend</description>
+    <name>github-repo-saver-backend</name>
+    <description>A tool to bookmark my favorite github repositories</description>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
