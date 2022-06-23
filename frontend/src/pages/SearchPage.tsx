@@ -24,7 +24,7 @@ export default function SearchPage() {
         if (errorMessage) {
             setTimeout(() => nav('/'), 5000)
         }
-    }, [errorMessage])
+    }, [errorMessage, nav])
 
     const searchRepositories = () => {
         getRepositoriesByUser(githubUsername)

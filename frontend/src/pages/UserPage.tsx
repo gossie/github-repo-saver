@@ -22,7 +22,7 @@ export default function UserPage() {
         if (errorMessage) {
             setTimeout(() => nav('/'), 5000)
         }
-    }, [errorMessage])
+    }, [errorMessage, nav])
 
     return (
         <div>
