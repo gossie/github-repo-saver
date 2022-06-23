@@ -19,7 +19,7 @@ class GitHubConnectionServiceTest {
 
         GitHubRepository[] actual = gitHubConnectionService.findByUsername("anyUser");
 
-        assertThat(actual).containsExactly(new GitHubRepository("Repo 1", "user/Repo1"), new GitHubRepository("Repo 2", "user/Repo2"));
+        assertThat(actual).containsExactly(new GitHubRepository("Repo1", "user/Repo1"), new GitHubRepository("Repo2", "user/Repo2"));
     }
 
     @Test
