@@ -15,3 +15,7 @@ export interface Favorite {
 export interface LoginResponse {
     token: string;
 }
+
+export interface AuthData {
+    gitHubClientId: string;
+}

@@ -1,6 +1,11 @@
 import axios, { AxiosResponse } from "axios";
 import { GitHubRepository, LoginResponse, User } from "./model";
 
+export function getAuthData() {
+    return axios.get("/api/auth")
+        .then((response: AxiosResponse<AuthData>) => response.data)
+}
+
 export function getRepositoriesByUser(githubUsername: string) {
     return axios.get(`/api/githubrepositories?gitHubUsername=${githubUsername}`, {
         headers: {

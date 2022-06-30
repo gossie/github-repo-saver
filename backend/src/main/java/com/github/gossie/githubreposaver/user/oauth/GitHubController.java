@@ -29,7 +29,7 @@ public class GitHubController {
     private final UserService userService;
     private final JwtService jwtService;
 
-    public GitHubController(RestTemplate restTemplate, UserService userService, JwtService jwtService, @Value("${app.oauth.clientId}") String clientId, @Value("${app.oauth.clientSecret}")  String clientSecret) {
+    public GitHubController(RestTemplate restTemplate, UserService userService, JwtService jwtService, @Value("${app.github.clientId}") String clientId, @Value("${app.github.clientSecret}")  String clientSecret) {
         this.restTemplate = restTemplate;
         this.userService = userService;
         this.jwtService = jwtService;
