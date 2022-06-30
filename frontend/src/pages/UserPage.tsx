@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { getRepositoriesByUser, getUser } from "../api-services"
 import FavoriteComponent from "../components/FavoriteComponent"
 import GitHubRepositoryComponent from "../components/GitHubRepositoryComponent"

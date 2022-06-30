@@ -1,5 +1,5 @@
 import { FormEvent, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getRepositoriesByUser, getUser } from "../api-services";
 import GitHubRepositoryComponent from "../components/GitHubRepositoryComponent";
 import { GitHubRepository, User } from "../model";
