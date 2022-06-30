@@ -11,7 +11,7 @@ export default function OauthCallback() {
         gitHubCallback(code!)
             .then(loginResponse => localStorage.setItem('jwt', loginResponse.token))
             .then(() => nav('/user'))
-    }, [code]);
+    }, [code, nav]);
 
     return (
         <div>...Loading...</div>
