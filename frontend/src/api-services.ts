@@ -5,8 +5,9 @@ export function getRepositoriesByUser(githubUsername: string) {
     return axios.get(`/api/githubrepositories?gitHubUsername=${githubUsername}`, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('jwt')}`
-        })
-        .then((response: AxiosResponse<Array<GitHubRepository>>) => response.data)
+        }
+    })
+    .then((response: AxiosResponse<Array<GitHubRepository>>) => response.data)
 
 }
 
@@ -16,23 +17,25 @@ export function getUser() {
             Authorization: `Bearer ${localStorage.getItem('jwt')}`
         }
     })
-        .then((response: AxiosResponse<User>) => response.data)
+    .then((response: AxiosResponse<User>) => response.data)
 }
 
 export function addRepoAsFavorite(repoName: string) {
     return axios.post(`/api/users/me/favorites`, { repositoryName: repoName }, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('jwt')}`
-        })
-        .then((response: AxiosResponse<User>) => response.data)
+        }
+    })
+    .then((response: AxiosResponse<User>) => response.data)
 }
 
 export function removeFavorite(repoName: string) {
     return axios.delete(`/api/users/me/favorites?repoName=${repoName}`, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('jwt')}`
-        })
-        .then((response: AxiosResponse<User>) => response.data)
+        }
+    })
+    .then((response: AxiosResponse<User>) => response.data)
 }
 
 export function gitHubCallback(code: string) {
