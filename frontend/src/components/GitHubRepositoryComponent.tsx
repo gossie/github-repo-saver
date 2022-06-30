@@ -10,7 +10,7 @@ interface GitHubRepositoryComponentProps {
 export default function GitHubRepositoryComponent(props: GitHubRepositoryComponentProps) {
 
     const add = () => {
-        addRepoAsFavorite(props.user.username, props.gitHubRepository.full_name)
+        addRepoAsFavorite(props.gitHubRepository.full_name)
             .then((changedUser) => props.onFavoriteAdd(changedUser))
     }
 

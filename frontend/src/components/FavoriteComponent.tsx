@@ -10,7 +10,7 @@ interface FavoriteComponentProps {
 export default function FavoriteComponent(props: FavoriteComponentProps) {
 
     const remove = () => {
-        removeFavorite(props.user.username, props.favorite.repositoryName)
+        removeFavorite(props.favorite.repositoryName)
             .then(changedUser => props.onFavoriteDeletion(changedUser))
     }
 
