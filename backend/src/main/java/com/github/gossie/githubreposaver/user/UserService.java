@@ -19,7 +19,7 @@ public class UserService {
         return userRepository.findByGitHubUserId(gitHubUser.getId())
                 .orElseGet(() -> {
                     User user = new User();
-                    user.setGitHubId(gitHubUser.getId());
+                    user.setGitHubUserId(gitHubUser.getId());
                     user.setGitHubUsername(gitHubUser.getLogin());
                     return userRepository.save(user);
                 });

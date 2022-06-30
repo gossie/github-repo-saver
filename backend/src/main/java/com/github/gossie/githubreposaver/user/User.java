@@ -20,7 +20,7 @@ public class User {
     @Id
     private String id;
     private String gitHubUsername;
-    private long gitHubId;
+    private long gitHubUserId;
     private List<Favorite> favoriteRepositories = new ArrayList<>();
 
     public User(String gitHubUsername) {
