@@ -8,7 +8,7 @@ export default function LoginPage() {
     useEffect(() => {
         getAuthData()
             .then(authData => setGitHubClientId(authData.gitHubClientId))
-    })
+    }, [])
 
     return (
         <div>
