@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { GitHubRepository, LoginResponse, User } from "./model";
+import { AuthData, GitHubRepository, LoginResponse, User } from "./model";
 
 export function getAuthData() {
     return axios.get("/api/auth")
