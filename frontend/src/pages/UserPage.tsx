@@ -21,7 +21,7 @@ export default function UserPage() {
 
     useEffect(() => {
         if (user) {
-            getRepositoriesByUser(user.username)
+            getRepositoriesByUser(user.gitHubUsername)
             .then(repositories => setOwnRepositories(repositories))
         }
     }, [user])
@@ -42,7 +42,7 @@ export default function UserPage() {
                         {user ?
                             <div>
                                 <div>
-                                    User: {user.username}
+                                    User: {user.gitHubUsername}
                                 </div>
                                 <div>
                                     <Link to={'/search'}>Search for repositories</Link>

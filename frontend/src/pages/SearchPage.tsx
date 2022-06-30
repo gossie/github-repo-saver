@@ -50,7 +50,7 @@ export default function SearchPage() {
                                     </div>
                                 </form>
                                 <div>
-                                    { gitHubRepositories.map(repo => <GitHubRepositoryComponent key={repo.name} user={user!} gitHubRepository={repo} onFavoriteAdd={(user) => nav(`/user/${user.username}`)} />) }
+                                    { gitHubRepositories.map(repo => <GitHubRepositoryComponent key={repo.name} user={user!} gitHubRepository={repo} onFavoriteAdd={(user) => nav(`/user/${user.gitHubUsername}`)} />) }
                                 </div>
                             </div>
                         }

@@ -4,7 +4,7 @@ export interface GitHubRepository {
 }
 
 export interface User {
-    username: string;
+    gitHubUsername: string;
     favoriteRepositories: Array<Favorite>;
 }
 
