@@ -1,5 +1,6 @@
-package com.github.gossie.githubreposaver;
+package com.github.gossie.githubreposaver.user;
 
+import com.github.gossie.githubreposaver.Favorite;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,11 +19,12 @@ public class User {
 
     @Id
     private String id;
-    private String username;
+    private String gitHubUsername;
+    private long gitHubId;
     private List<Favorite> favoriteRepositories = new ArrayList<>();
 
-    public User(String username) {
-        this.username = username;
+    public User(String gitHubUsername) {
+        this.gitHubUsername = gitHubUsername;
     }
 
     public void addFavorite(Favorite favorite) {

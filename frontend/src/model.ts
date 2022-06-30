@@ -11,3 +11,7 @@ export interface User {
 export interface Favorite {
     repositoryName: string;
 }
+
+export interface LoginResponse {
+    token: string;
+}

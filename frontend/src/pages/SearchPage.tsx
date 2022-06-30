@@ -11,14 +11,13 @@ export default function SearchPage() {
     const [githubUsername, setGithubUsername] = useState('')
     const [gitHubRepositories, setGitHubRepositories] = useState<Array<GitHubRepository>>([])
 
-    const { username } = useParams()
     const nav = useNavigate()
  
     useEffect(() => {
-        getUser(username!)
+        getUser()
             .then((user => setUser(user)))
-            .catch(() => setErrorMessage(`The user ${username} cannot be found. You will be redirected to the login page.`))
-    }, [username])
+            .catch(() => setErrorMessage(`The user cannot be found. You will be redirected to the login page.`))
+    }, [])
 
     useEffect(() => {
         if (errorMessage) {

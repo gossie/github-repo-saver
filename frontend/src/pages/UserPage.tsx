@@ -11,17 +11,20 @@ export default function UserPage() {
     const [errorMessage, setErrorMessage] = useState('');
     const [ownRepositories, setOwnRepositories] = useState<Array<GitHubRepository>>([]);
 
-    const { username } = useParams()
     const nav = useNavigate()
  
     useEffect(() => {
-        getUser(username!)
+        getUser()
             .then((user => setUser(user)))
-            .catch(() => setErrorMessage(`The user ${username} cannot be found. You will be redirected to the login page.`))
+            .catch(() => setErrorMessage(`The user cannot be found. You will be redirected to the login page.`))
+    }, [])
 
-        getRepositoriesByUser(username!)
+    useEffect(() => {
+        if (user) {
+            getRepositoriesByUser(user.username)
             .then(repositories => setOwnRepositories(repositories))
-    }, [username])
+        }
+    }, [user])
 
     useEffect(() => {
         if (errorMessage) {
@@ -36,24 +39,25 @@ export default function UserPage() {
                     <div>{errorMessage}</div>
                 :
                     <div>
-                        {user &&
+                        {user ?
                             <div>
                                 <div>
-                                    User: {username}
+                                    User: {user.username}
                                 </div>
                                 <div>
-                                    <Link to={`/search/${username}`}>Search for repositories</Link>
+                                    <Link to={'/search'}>Search for repositories</Link>
                                 </div>
                                 <div>
                                     <h3>Favorites</h3>
                                     { user.favoriteRepositories?.map(f => <FavoriteComponent key={f.repositoryName} user={user} favorite={f} onFavoriteDeletion={setUser} />) }
                                 </div>
-                                <div>
-                                    <h3>Own repositories</h3>
-                                    { ownRepositories.map(repo => <GitHubRepositoryComponent key={repo.name} user={user!} gitHubRepository={repo} onFavoriteAdd={setUser} />) }
-                                </div>
                             </div>
+                            : <div>...Loading...</div>
                         }
+                        <div>
+                            <h3>Own repositories</h3>
+                            { ownRepositories.length > 0 ? ownRepositories.map(repo => <GitHubRepositoryComponent key={repo.name} user={user!} gitHubRepository={repo} onFavoriteAdd={setUser} />) : <div>...Loading...</div> }
+                        </div>
                     </div>
             }
             

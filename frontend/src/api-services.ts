@@ -1,23 +1,41 @@
 import axios, { AxiosResponse } from "axios";
-import { GitHubRepository, User } from "./model";
+import { GitHubRepository, LoginResponse, User } from "./model";
 
 export function getRepositoriesByUser(githubUsername: string) {
-    return axios.get(`/api/githubrepositories?gitHubUsername=${githubUsername}`)
+    return axios.get(`/api/githubrepositories?gitHubUsername=${githubUsername}`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        })
         .then((response: AxiosResponse<Array<GitHubRepository>>) => response.data)
 
 }
 
-export function getUser(username: string) {
-    return axios.get(`/api/users/${username}`)
+export function getUser() {
+    return axios.get(`/api/users/me`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        }
+    })
         .then((response: AxiosResponse<User>) => response.data)
 }
 
-export function addRepoAsFavorite(username: string, repoName: string) {
-    return axios.post(`/api/users/${username}/favorites`, { repositoryName: repoName })
+export function addRepoAsFavorite(repoName: string) {
+    return axios.post(`/api/users/me/favorites`, { repositoryName: repoName }, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        })
         .then((response: AxiosResponse<User>) => response.data)
 }
 
-export function removeFavorite(username: string, repoName: string) {
-    return axios.delete(`/api/users/${username}/favorites?repoName=${repoName}`)
+export function removeFavorite(repoName: string) {
+    return axios.delete(`/api/users/me/favorites?repoName=${repoName}`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        })
         .then((response: AxiosResponse<User>) => response.data)
+}
+
+export function gitHubCallback(code: string) {
+    return axios.post(`/api/oauth?code=${code}`)
+        .then((response: AxiosResponse<LoginResponse>) => response.data)
 }
