@@ -11,8 +11,8 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<LoginPage />} />
-                    <Route path="/user/:username" element={<UserPage />} />
-                    <Route path="/search/:username" element={<SearchPage />} />
+                    <Route path="/user" element={<UserPage />} />
+                    <Route path="/search" element={<SearchPage />} />
                     <Route path="/oauth" element={<OauthCallback />} />
                 </Routes>
             </BrowserRouter>
