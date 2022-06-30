@@ -26,7 +26,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/oauth").permitAll()
-                .antMatchers(HttpMethod.GET, "/", "/index.html", "/*.js", "/*.css", "/api/auth").permitAll()
+                .antMatchers(HttpMethod.GET, "/", "/index.html", "/static/*.js", "/static/*.css", "/api/auth").permitAll()
                 .antMatchers("/**").authenticated()
                 .and()
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
