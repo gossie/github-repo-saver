@@ -27,7 +27,7 @@ public class SecurityConfig {
         return http.csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/oauth").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/auth").permitAll()
-                .mvcMatchers(HttpMethod.GET, "/", "/index*", "/static/**", "/*.js", "/*.json", "/*.ico","/*.png").permitAll()
+                .mvcMatchers(HttpMethod.GET, "/", "/index*", "/github-oauth*", "/static/**", "/*.js", "/*.json", "/*.ico","/*.png").permitAll()
                 .antMatchers("/**").authenticated()
                 .and()
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
